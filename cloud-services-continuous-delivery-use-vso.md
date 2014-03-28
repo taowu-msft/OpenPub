@@ -1,7 +1,7 @@
 <properties linkid="dev-net-common-tasks-publishing-with-vso" urlDisplayName="Publishing with TFS" pageTitle="Continuous delivery with Visual Studio Online in Windows Azure" metaKeywords="" description="Learn how to configure your Visual Studio Online team projects to automatically build and deploy to Windows Azure web sites or cloud services." metaCanonical="" services="web-sites" documentationCenter=".NET" title="Continuous delivery to Windows Azure using Visual Studio Online" authors=""  solutions="" writer="ghogen" manager="" editor=""  />
 
 
-
+//taowu-msft made a change
 
 # Continuous delivery to Windows Azure using Visual Studio Online
 
@@ -111,106 +111,4 @@ Note the options to include or exclude specific changes when you check in. If de
 The Team Explorer shows that a build has been triggered for your check-in.<br/>
 ![][23]
 
-9. Double-click the name of the build in progress to view a detailed log as the build progresses.<br/>
-![][24]
-
-10. While the build is in-progress, take a look at the build definition that was created when you linked TFS to Windows Azure by using the wizard.  Open the shortcut menu for the build definition and choose **Edit Build Definition**.<br/>
-![][25]
-<br/>
-In the **Trigger** tab, you will see that the build definition is set to build on every check-in by default.<br/>
-![][26]
-<br/>
-In the **Process** tab, you can see the deployment environment is set to the name of your cloud service or web site. If you are working with web sites, the properties you see will be different from those shown here.<br/>
-![][27]
-<br/>
-Specify values for the properties if you want different values than the defaults.
-The following table shows default values of the properties for a cloud service:
-	<table>
-<tr><td><b>Property</b></td><td><b>Default Value</b></td></tr>
-<tr><td>Allow Upgrade</td><td>true</td></tr>
-<tr><td>Cloud Service Environment</td><td>Staging</td></tr>
-<tr><td>Cloud Service Name</td><td>The name of the service you are connected to</td></tr>
-<tr><td>Deployment Label</td><td>The same as the service name</td></tr>
-<tr><td>Service Configuration</td><td>ServiceConfiguration.Cloud.cscfg</td></tr>
-<tr><td>Storage Account Name</td><td>Blank, which means try to find a storage account.</td></tr>
-<tr><td>Publish Profile</td><td>The .azurePubxml file. If you check in one, you can choose it here.</td></tr>
-</table>
-<br/>
-If the storage account property is left blank, Windows Azure searches for one. If there is a storage
-account with the same name as the cloud service, it is used. Otherwise, it uses another storage account,
-or if there is no storage account, it creates one. The storage account provides a place in Windows Azure for storage files and other data. For more information, see [What is a storage account?](http://www.windowsazure.com/en-us/documentation/articles/storage-whatis-account).
-
-11. By this time, your build should be completed successfully.<br/>
-![][28]
-
-12. If you double-click the build name, Visual Studio shows a **Build Summary**, including any test results from associated unit test projects.<br/>
-![][29]
-
-13. In the [Windows Azure Portal](http://manage.windowsazure.com), you can view the associated deployment on the Deployments tab when the staging environment is selected.<br/>
-![][30]
-
-14.	Browse to your site's URL. For a web site, just click the Browse button on the command bar. For a cloud service, choose the URL in the **Quick Glance** section of the **Dashboard** page that shows the Staging environment for a cloud service. Deployments from continuous integration for cloud services are published to the Staging environment by default. You can change this by setting the Alternate Cloud Service Environment property to Production. This screenshot shows where the site URL is on the cloud service's dashboard page: <br/>
-![][31]
-<br/>
-A new browser tab will open to reveal your running site.<br/>
-![][32]
-
-15.	For cloud services, if you make other changes to your project, you trigger more builds, and you will accumulate multiple deployments. The latest one marked as Active.<br/>
-![][33]
-
-<h2> <a name="step5"> </a><span class="short-header">Redeploy an earlier build</span>Step 5: Redeploy an earlier build</h2>
-
-This step applies to cloud services and is optional. In the management portal, select an earlier deployment and click the **Redeploy** button to rewind your site to an earlier check-in.  Note that this will trigger a new build in TFS, and create a new entry in your deployment history.<br/>
-![][34]
-
-<h2> <a name="step6"> </a><span class="short-header">Change the Production deployment</span>Step 6: Change the Production deployment</h2>
-
-This step applies only to cloud services, not web sites. When you are ready, you can promote the Staging environment to the production environment by choosing the Swap button in the management portal. The newly deployed Staging environment is promoted to Production, and the previous Production environment, if any, becomes a Staging environment. The Active deployment may be different for the Production and Staging environments, but the deployment history of recent builds is the same regardless of environment.<br/>
-![][35]
-
-For more information, see [Visual Studio Online](http://go.microsoft.com/fwlink/?LinkId=253861). If you're using Git, see [Share your code in Git](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx) and [Publishing from Source Control to Windows Azure Web Sites](http://www.windowsazure.com/documentation/articles/web-sites-publish-source-control).
-
-[Step 1: Sign up for Visual Studio Online.]: #step1
-[Step 2: Check in a project to source control.]: #step2
-[Step 3: Connect the project to Windows Azure.]: #step3
-[Step 4: Make changes and trigger a rebuild and redeployment.]: #step4
-[Step 5: Redeploy an earlier build (optional)]: #step5
-[Step 6: Change the Production deployment (cloud services only)]: #step6
-[0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
-[1]: ./media/cloud-services-continuous-delivery-use-vso/tfs1.png
-[2]: ./media/cloud-services-continuous-delivery-use-vso/tfs2.png
-
-
-[5]: ./media/cloud-services-continuous-delivery-use-vso/tfs5.png
-[6]: ./media/cloud-services-continuous-delivery-use-vso/tfs6.png
-[7]: ./media/cloud-services-continuous-delivery-use-vso/tfs7.png
-[8]: ./media/cloud-services-continuous-delivery-use-vso/tfs8.png
-[9]: ./media/cloud-services-continuous-delivery-use-vso/tfs9.png
-[10]: ./media/cloud-services-continuous-delivery-use-vso/tfs10.png
-[11]: ./media/cloud-services-continuous-delivery-use-vso/tfs11.png
-[12]: ./media/cloud-services-continuous-delivery-use-vso/tfs12.png
-[13]: ./media/cloud-services-continuous-delivery-use-vso/tfs13.png
-[14]: ./media/cloud-services-continuous-delivery-use-vso/tfs14.png
-[15]: ./media/cloud-services-continuous-delivery-use-vso/tfs15.png
-[16]: ./media/cloud-services-continuous-delivery-use-vso/tfs16.png
-[17]: ./media/cloud-services-continuous-delivery-use-vso/tfs17.png
-[18]: ./media/cloud-services-continuous-delivery-use-vso/tfs18.png
-[19]: ./media/cloud-services-continuous-delivery-use-vso/tfs19.png
-[20]: ./media/cloud-services-continuous-delivery-use-vso/tfs20.png
-[21]: ./media/cloud-services-continuous-delivery-use-vso/tfs21.png
-[22]: ./media/cloud-services-continuous-delivery-use-vso/tfs22.png
-[23]: ./media/cloud-services-continuous-delivery-use-vso/tfs23.png
-[24]: ./media/cloud-services-continuous-delivery-use-vso/tfs24.png
-[25]: ./media/cloud-services-continuous-delivery-use-vso/tfs25.png
-[26]: ./media/cloud-services-continuous-delivery-use-vso/tfs26.png
-[27]: ./media/cloud-services-continuous-delivery-use-vso/tfs27.png
-[28]: ./media/cloud-services-continuous-delivery-use-vso/tfs28.png
-[29]: ./media/cloud-services-continuous-delivery-use-vso/tfs29.png
-[30]: ./media/cloud-services-continuous-delivery-use-vso/tfs30.png
-[31]: ./media/cloud-services-continuous-delivery-use-vso/tfs31.png
-[32]: ./media/cloud-services-continuous-delivery-use-vso/tfs32.png
-[33]: ./media/cloud-services-continuous-delivery-use-vso/tfs33.png
-[34]: ./media/cloud-services-continuous-delivery-use-vso/tfs34.png
-[35]: ./media/cloud-services-continuous-delivery-use-vso/tfs35.png
-[36]: ./media/cloud-services-continuous-delivery-use-vso/tfs36.PNG
-[37]: ./media/cloud-services-continuous-delivery-use-vso/tfs37.PNG
+9. Double-click the name of the build in progress to view a detailed 
